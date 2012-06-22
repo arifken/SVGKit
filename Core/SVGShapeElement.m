@@ -134,12 +134,21 @@
 		_fillColor.a = (uint8_t) ([value floatValue] * 0xFF);
 	}
     
-    if(_strokeWidth)
+    if(_strokeWidth) {
+        if (_strokeCG) {
+            CGColorRelease(_strokeCG);
+        }
         _strokeCG = CGColorRetain(CGColorWithSVGColor(_strokeColor));
-    
-    if(_fillType == SVGFillTypeSolid)
+    }
+
+    if (_fillType == SVGFillTypeSolid) {
+
+        if (_fillCG) {
+            CGColorRelease(_fillCG);
+        }
         _fillCG = CGColorRetain(CGColorWithSVGColor(_fillColor));
-    
+    }
+
 }
 
 - (void)loadPath:(CGPathRef)aPath {

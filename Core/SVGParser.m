@@ -121,6 +121,7 @@ static NSMutableSet *_parserExtensions = nil;
 }
 
 - (void)dealloc {
+    [parseWarnings release], parseWarnings = nil;
 	[_path release];
 	[_storedChars release];
 	[_elementStack release];
